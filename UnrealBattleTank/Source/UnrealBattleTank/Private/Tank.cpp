@@ -39,7 +39,7 @@ void ATank::AimAt(FVector Hitpoint)
 	TankAimingComponent->AimAt(Hitpoint, LaunchSpeed);
 }
 
-void ATank::SetBarrelReference(UStaticMeshComponent* BarrelToSet)
+void ATank::SetBarrelReference(UTankBarrel* BarrelToSet)
 {
 	TankAimingComponent->SetBarrelReference(BarrelToSet);
 }
