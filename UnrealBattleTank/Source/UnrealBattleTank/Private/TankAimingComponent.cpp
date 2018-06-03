@@ -2,6 +2,7 @@
 
 #include "TankAimingComponent.h"
 #include "TankBarrel.h"
+#include "TankTurret.h"
 
 
 // Sets default values for this component's properties
@@ -16,7 +17,14 @@ UTankAimingComponent::UTankAimingComponent()
 
 void UTankAimingComponent::SetBarrelReference(UTankBarrel* BarrelToSet)
 {
+	if (!BarrelToSet) { return; } // protect pointer
 	Barrel = BarrelToSet;
+}
+
+void UTankAimingComponent::SetTurretReference(UTankTurret* TurretToSet)
+{
+	if (!TurretToSet) { return; }
+	Turret = TurretToSet;
 }
 
 
@@ -25,6 +33,12 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 	if (!Barrel)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No barrel found"));
+		return;
+	}
+
+	if (!Turret)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("No turret found"));
 		return;
 	}
 
@@ -53,8 +67,6 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 	auto BarrelRotator = Barrel->GetForwardVector().Rotation();
 	auto AimAsRotator = AimDirection.Rotation();
 	auto DeltaRotator = AimAsRotator - BarrelRotator;
-	
-
-	Barrel->Elevate(5);
+	Barrel->Elevate(DeltaRotator.Pitch); // regardless of the number we have clamped the relative spped in tank barrel
+	Turret->Rotate(DeltaRotator.Yaw);
 }
-
