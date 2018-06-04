@@ -37,9 +37,6 @@ void ATankPlayerController::AimTowardsCrosshair()
 		return;
 	}
 
-	auto Time = GetWorld()->GetTimeSeconds();
-	UE_LOG(LogTemp, Warning, TEXT("%f: Aim Solution found"), Time);
-
 	FVector HitLocation; // out parameter
 	if (GetSightRayHitLocation(HitLocation)) // has "side-effect" is going to lay trace
 	{
