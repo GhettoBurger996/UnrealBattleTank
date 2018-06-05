@@ -6,16 +6,6 @@
 void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay(); // by writing super we tell it to call the default behavior before doing anything else
-	auto ControlledTank = GetControlledTank();
-	if (!ControlledTank)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("PlayerController not possessing a tank"));
-	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("PlayerController possessing tank: %s "), *(ControlledTank->GetName()));
-	}
-	UE_LOG(LogTemp, Warning, TEXT("PlayerController Begin Play"))
 }
 
 void ATankPlayerController::Tick(float DeltaTime)

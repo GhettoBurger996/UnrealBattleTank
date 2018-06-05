@@ -11,6 +11,7 @@ class UTankBarrel; // forward declaration
 class UTankAimingComponent;
 class UTankTurret;
 class AProjectile;
+class UTankMovementComponent;
 
 UCLASS()
 class UNREALBATTLETANK_API ATank : public APawn
@@ -40,6 +41,9 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	UTankAimingComponent* TankAimingComponent = nullptr; // simply initialize it has to be to somehting
+	
+	UPROPERTY(BlueprintReadOnly) // allows us to drag reference of movement component in blueprint 
+	UTankMovementComponent* TankMovementComponent = nullptr;
 
 private:
 	

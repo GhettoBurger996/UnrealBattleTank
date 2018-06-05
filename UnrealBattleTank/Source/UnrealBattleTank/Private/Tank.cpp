@@ -4,7 +4,7 @@
 #include "TankBarrel.h"
 #include "Projectile.h"
 #include "TankAimingComponent.h"
-
+#include "TankMovementComponent.h"
 
 // Sets default values
 ATank::ATank()
@@ -13,6 +13,7 @@ ATank::ATank()
 	PrimaryActorTick.bCanEverTick = false;
 
 	TankAimingComponent = CreateDefaultSubobject<UTankAimingComponent>(FName("Aiming Componenet")); // This will make it appear in the editor
+	TankMovementComponent = CreateDefaultSubobject<UTankMovementComponent>(FName("Movement Componenet"));
 
 }
 
@@ -58,7 +59,5 @@ void ATank::Fire()
 		Projectile->LaunchProjectile(LaunchSpeed);
 		LastFireTime = FPlatformTime::Seconds();
 	}
-
-	
 }
 
