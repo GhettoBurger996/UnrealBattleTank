@@ -32,7 +32,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 {
 	if (!Barrel)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("No barrel found"));
+		UE_LOG(LogTemp, Warning, TEXT("No barrel found")); // TODO find out why this is error
 		return;
 	}
 

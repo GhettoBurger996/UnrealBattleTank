@@ -13,8 +13,6 @@ ATank::ATank()
 	PrimaryActorTick.bCanEverTick = false;
 
 	TankAimingComponent = CreateDefaultSubobject<UTankAimingComponent>(FName("Aiming Componenet")); // This will make it appear in the editor
-	TankMovementComponent = CreateDefaultSubobject<UTankMovementComponent>(FName("Movement Componenet"));
-
 }
 
 // Called when the game starts or when spawned
