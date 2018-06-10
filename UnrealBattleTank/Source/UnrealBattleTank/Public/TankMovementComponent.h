@@ -27,9 +27,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void IntendTurnRight(float Throw);
 
-	virtual void RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed) override;
 
 private:
+	// Called from the pathfinding logic by the AI Controllers 
+	virtual void RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed) override;
 
 	UTankTrack* LeftTrack = nullptr; // here we just want a pointer that will enable us to initialize an object later on 
 	UTankTrack* RightTrack = nullptr;
