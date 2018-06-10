@@ -22,24 +22,17 @@ public:
 	// Sets default values for this pawn's properties
 	ATank();
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
 	void AimAt(FVector Hitpoint);
-	
-	UFUNCTION(BlueprintCallable, Category = Setup)
-	void SetBarrelReference(UTankBarrel* BarrelToSet);
 
-	UFUNCTION(BlueprintCallable, Category = Setup)
-	void SetTurretReference(UTankTurret* TurretToSet);
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+	void Initialize(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet);
 
 	UFUNCTION(BlueprintCallable)
 	void Fire();
 
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	UPROPERTY(BlueprintReadOnly)
 	UTankAimingComponent* TankAimingComponent = nullptr; // simply initialize it has to be to somehting
 	
 	UPROPERTY(BlueprintReadOnly) // allows us to drag reference of movement component in blueprint 
@@ -47,17 +40,17 @@ protected:
 
 private:
 	
-	UPROPERTY(EditDefaultsOnly, Category = Firing)
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 	float LaunchSpeed = 4000; 
 
-	UPROPERTY(EditDefaultsOnly, Category = Setup) // EdieDfaultsOnly edits as a whole and not individual tanks
+	UPROPERTY(EditDefaultsOnly, Category = "Setup") // EdieDfaultsOnly edits as a whole and not individual tanks
 	float ReloadTimeInSeconds = 3;
 
-	UPROPERTY(EditDefaultsOnly, Category = Setup)
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 	TSubclassOf<AProjectile> ProjectileBlueprint;
-
-	// Local barrel reference for spawning projectile 
-	UTankBarrel* Barrel = nullptr;
 	
+	// local barrel reference for spawning projectiles 
+	UTankBarrel* Barrel = nullptr; 
+
 	double LastFireTime = 0;
 };
