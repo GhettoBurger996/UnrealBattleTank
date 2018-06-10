@@ -32,6 +32,7 @@ public:
 
 
 protected:
+
 	UPROPERTY(BlueprintReadOnly)
 	UTankAimingComponent* TankAimingComponent = nullptr; // simply initialize it has to be to somehting
 	
@@ -53,4 +54,6 @@ private:
 	UTankBarrel* Barrel = nullptr; 
 
 	double LastFireTime = 0;
+
+	virtual void BeginPlay() override;
 };
