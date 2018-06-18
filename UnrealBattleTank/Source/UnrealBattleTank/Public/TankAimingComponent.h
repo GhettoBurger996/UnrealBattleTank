@@ -19,7 +19,8 @@ enum class EFiringState : uint8
 {
 	Reloading,
 	Aiming,
-	Locked
+	Locked,
+	OutOfAmmo
 };
 
 // Hold barrel's properties and elevate method
@@ -38,6 +39,11 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 	void Fire();
+
+	EFiringState GetFiringState() const;
+
+	UFUNCTION(BlueprintCallable, Category = "Firing")
+	int GetRoundsLeft() const;
 
 protected:
 
@@ -71,6 +77,7 @@ private:
 
 	double LastFireTime = 0;
 
+	int RoundsLeft = 3;
 	
 	FVector AimDirection;
 };
