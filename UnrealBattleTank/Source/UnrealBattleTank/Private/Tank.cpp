@@ -11,6 +11,7 @@ ATank::ATank()
 
 void ATank::BeginPlay()
 {
+	Super::BeginPlay();
 	CurrentHealth = StartingHealth;
 }
 
@@ -24,7 +25,6 @@ float ATank::TakeDamage(float DamageAmmount, struct FDamageEvent const &DamageEv
 	{
 		OnDeath.Broadcast();
 	}
-	UE_LOG(LogTemp, Warning, TEXT("FUCK"))
 	return DamageToApply;
 }
 
